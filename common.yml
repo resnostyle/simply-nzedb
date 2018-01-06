@@ -1,21 +1,6 @@
 version: '2'
 services:
 
-  database:
-    image: slydetector/simply-nzedb-mariadb
-    restart: unless-stopped
-    volumes:
-      - $PWD/data/var_lib_mysql:/var/lib/mysql
-      - $PWD/data/etc_mysql_conf.d:/etc/mysql/conf.d
-      - $PWD/data/mysql_user:/mysql_user
-    environment:
-      - MYSQL_ROOT_PASSWORD=nzedb
-      - MYSQL_DATABASE=nzedb
-      - MYSQL_USER=nzedb
-      - MYSQL_PASSWORD=nzedb
-    expose:
-      - "3306"
-
   nzedb:
     image: slydetector/simply-nzedb
     restart: unless-stopped
@@ -44,12 +29,6 @@ services:
       - $PWD/data/import:/var/www/nZEDb/resources/import/
       - $PWD/data/proxychains.conf:/etc/proxychains/proxychains.conf
       - $PWD/data/db_backups:/db_backups
-
-  adminer:
-    image: clue/adminer
-    restart: unless-stopped
-    ports: 
-      - 8880:80
 
   redis:
     image: redis:3.2.6-alpine

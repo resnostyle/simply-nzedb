@@ -17,15 +17,6 @@ services:
       - database
       - redis
 
-  adminer:
-    extends:
-      file: common.yml
-      service: adminer
-    links: 
-      - database:db
-    depends_on:
-      - database
-
   redis:
     extends:
       file: common.yml
